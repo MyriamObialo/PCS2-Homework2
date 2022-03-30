@@ -1,0 +1,178 @@
+ROSALIND DNA EXERCISES
+
+
+#EXERCISE 1  DNA
+def CountingDNANucleotides(Dna):
+    count_a=0
+    count_g=0
+    count_t=0
+    count_c=0
+    for x in Dna:
+        if x=="A":
+            count_a+=1
+        if x=="G":
+            count_g+=1
+        if x=="T":
+            count_t+=1
+        if x=="C":
+            count_c+=1
+    print(count_a,count_c,count_g,count_t, sep=" ")
+
+#EXERCISE 2   RNA
+def FromDNAtoRNA(DNA):
+    RNA=DNA.replace("T","U")
+    return(RNA)
+
+#EXERCISE 3 COMPLEMENTING A STRING OF DNA
+def ComplemDNA(DNA):
+    for x in DNA:
+        if x=="A":
+            DNA=DNA.replace("A","t")
+        if x=="C":
+            DNA=DNA.replace("C","g")
+        if x=="G":
+            DNA=DNA.replace("G","c")
+        if x=="T":
+            DNA=DNA.replace("T","a")
+    return(DNA[::-1].upper())
+ 
+#EXERCISE 4 COMPUTING GC CONTENT
+
+from collections import Counter
+
+def ComputingGC(string1,string2,string3,string4,string5,string6):
+    d=dict()
+    result=list()
+    c=Counter(string1)
+
+    s= (c["C"]+c["G"])/(len(string1[14:]))
+    result.append(s)
+    d[string1[1:14]]= s
+    
+
+    a=Counter(string2)
+    t= (a["C"]+c["G"])/(len(string2[14:]))
+    result.append(t)
+    d[string2[1:14]]= t
+
+    p= Counter(string3)
+    q= (p["C"]+p["G"])/(len(string3[14:]))
+    result.append(q)
+    d[string3[1:14]]= q
+
+    b= Counter(string3)
+    b1= (b["C"]+b["G"])/(len(string4[14:]))
+    result.append(b1)
+    d[string3[1:14]]= b1
+
+    f= Counter(string3)
+    f1= (f["C"]+f["G"])/(len(string5[14:]))
+    result.append(f1)
+    d[string3[1:14]]= f1
+
+    j= Counter(string3)
+    j1= (j["C"]+j["G"])/(len(string6[14:]))
+    result.append(j1)
+    d[string3[1:14]]= j1
+
+    for key,value in d.items():
+        if value== max(result):
+            print(key)
+    return (round(max(result)*100,6))
+
+
+#EXERCISE 5 FIND MOTIF
+def Find_motif(string,substring):
+    t=str()
+
+    for i in range(len(string)):
+        if string[i:i+len(substring)] == substring:
+            t+= str(i+1)+" "
+    return t
+
+#EXERCISE 6 MENDEL
+
+def mendel(x, y, z):
+
+    population = x+y+z
+    recess = (z/population)*((z-1)/(population-1))
+    Hetero = (y/population)*((y-1)/(population-1))
+    
+    heteroRecess = (z/population)*(y/(population-1)) + (y/population)*(z/(population-1))
+
+    probability = recess + 1/4*Hetero + 1/2*heteroRecess
+    print('{0:.5f}'.format(1-probability))
+
+#EXERCISE 7 IVR
+def offspring(string):
+    result= list()
+    if string[0]>=1:
+        result.append(2* string[0])
+    if string[1]>=1:
+        result.append(2* string[1])
+    if string[2]>=1:
+        result.append(2* string[2])
+    if string[3]>=1:
+        result.append(0.75*2* string[3])
+    if string[4]>=1:
+        result.append(0.5*2* string[4])
+    if string[5]>=1:
+        result.append(0*2 *string[5])
+    return(sum(result))
+
+#EXERCISE 8 LIA
+import math
+def lia (k,n):
+    pop= 2**k
+    result=list()
+    for x in range(n, pop+1):
+        prob= math.factorial(pop)/(math.factorial(x) * math.factorial(pop-x)) * (0.25 ** x) * (0.75**(pop-x))
+        result.append(prob)
+        probability= sum(result)
+
+    return (round(probability,3))
+
+#EXERCISE 9 CONS
+from Bio import SeqIO
+import numpy as np
+np.set_printoptions(threshold=np.inf)
+
+sequence, seq2 = [], []
+with open ("../Downloads/rosalind_cons.txt",'r') as fa:
+    for seq_record  in SeqIO.parse(fa,'fasta'):
+        sequence.append(str(seq_record.name))
+        seq2.append(str(seq_record.seq))
+seq_len = len(seq2)
+str_len = len(seq2[0])
+elements=["A", "C", "G", "T"]
+consensus_string = ""
+matrix = np.zeros(shape=(4, str_len), dtype=int)
+for c in range(str_len):
+    position_symbol = [s[c] for s in seq2]
+    symbol = max(position_symbol, key=position_symbol.count)
+    consensus_string += symbol
+    for r in range(len(elements)):
+        matrix[r][c] = position_symbol.count(elements[r])    
+print(consensus_string)
+for i in range(len(elements)):
+    print("{}: {}".format(elements[i], " ".join([str(j) for j in matrix[i]])))
+
+#EXERCISE 10 PROB
+import math
+def prob(s,a):
+    at=0 
+    gc=0
+    for i in s: 
+        if i=="A":
+            at+=1
+        if i=="T":
+            at+=1
+        if i=="G":
+            gc+=1
+        if i=="C":
+            gc+=1
+    probabilities = []
+    for j in range(len(a)):
+        prob = math.log10((((1 - a[j]) / 2)**at) * (a[j] / 2)**gc)
+        probabilities.append('%0.3f' % prob)
+    print(*probabilities, sep=' ')
