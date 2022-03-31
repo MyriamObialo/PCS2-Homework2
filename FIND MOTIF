@@ -1,0 +1,7 @@
+def Find_motif(string,substring):
+    t=str()
+
+    for i in range(len(string)):
+        if string[i:i+len(substring)] == substring:
+            t+= str(i+1)+" "
+    return t
