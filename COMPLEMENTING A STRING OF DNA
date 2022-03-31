@@ -1,0 +1,11 @@
+def ComplemDNA(DNA):
+    for x in DNA:
+        if x=="A":
+            DNA=DNA.replace("A","t")
+        if x=="C":
+            DNA=DNA.replace("C","g")
+        if x=="G":
+            DNA=DNA.replace("G","c")
+        if x=="T":
+            DNA=DNA.replace("T","a")
+    return(DNA[::-1].upper())
