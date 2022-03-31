@@ -1,0 +1,18 @@
+import math
+def prob(s,a):
+    at=0 
+    gc=0
+    for i in s: 
+        if i=="A":
+            at+=1
+        if i=="T":
+            at+=1
+        if i=="G":
+            gc+=1
+        if i=="C":
+            gc+=1
+    probabilities = []
+    for j in range(len(a)):
+        prob = math.log10((((1 - a[j]) / 2)**at) * (a[j] / 2)**gc)
+        probabilities.append('%0.3f' % prob)
+    print(*probabilities, sep=' ')
