@@ -1,0 +1,3 @@
+def FromDNAtoRNA(DNA):
+    RNA=DNA.replace("T","U")
+    return(RNA)
