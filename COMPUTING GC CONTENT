@@ -1,0 +1,41 @@
+from collections import Counter
+
+def ComputingGC(string1,string2,string3,string4,string5,string6):
+    d=dict()
+    result=list()
+    c=Counter(string1)
+
+    s= (c["C"]+c["G"])/(len(string1[14:]))
+    result.append(s)
+    d[string1[1:14]]= s
+    
+
+    a=Counter(string2)
+    t= (a["C"]+c["G"])/(len(string2[14:]))
+    result.append(t)
+    d[string2[1:14]]= t
+
+    p= Counter(string3)
+    q= (p["C"]+p["G"])/(len(string3[14:]))
+    result.append(q)
+    d[string3[1:14]]= q
+
+    b= Counter(string3)
+    b1= (b["C"]+b["G"])/(len(string4[14:]))
+    result.append(b1)
+    d[string3[1:14]]= b1
+
+    f= Counter(string3)
+    f1= (f["C"]+f["G"])/(len(string5[14:]))
+    result.append(f1)
+    d[string3[1:14]]= f1
+
+    j= Counter(string3)
+    j1= (j["C"]+j["G"])/(len(string6[14:]))
+    result.append(j1)
+    d[string3[1:14]]= j1
+
+    for key,value in d.items():
+        if value== max(result):
+            print(key)
+    return (round(max(result)*100,6))
