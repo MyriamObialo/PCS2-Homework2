@@ -1,0 +1,11 @@
+
+def mendel(x, y, z):
+
+    population = x+y+z
+    recess = (z/population)*((z-1)/(population-1))
+    Hetero = (y/population)*((y-1)/(population-1))
+    
+    heteroRecess = (z/population)*(y/(population-1)) + (y/population)*(z/(population-1))
+
+    probability = recess + 1/4*Hetero + 1/2*heteroRecess
+    print('{0:.5f}'.format(1-probability))
