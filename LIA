@@ -1,0 +1,10 @@
+import math
+def lia (k,n):
+    pop= 2**k
+    result=list()
+    for x in range(n, pop+1):
+        prob= math.factorial(pop)/(math.factorial(x) * math.factorial(pop-x)) * (0.25 ** x) * (0.75**(pop-x))
+        result.append(prob)
+        probability= sum(result)
+
+    return (round(probability,3))
