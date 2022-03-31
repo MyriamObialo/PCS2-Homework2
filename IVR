@@ -1,0 +1,15 @@
+def offspring(string):
+    result= list()
+    if string[0]>=1:
+        result.append(2* string[0])
+    if string[1]>=1:
+        result.append(2* string[1])
+    if string[2]>=1:
+        result.append(2* string[2])
+    if string[3]>=1:
+        result.append(0.75*2* string[3])
+    if string[4]>=1:
+        result.append(0.5*2* string[4])
+    if string[5]>=1:
+        result.append(0*2 *string[5])
+    return(sum(result))
