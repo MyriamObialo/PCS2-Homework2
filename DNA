@@ -1,0 +1,15 @@
+def CountingDNANucleotides(Dna):
+    count_a=0
+    count_g=0
+    count_t=0
+    count_c=0
+    for x in Dna:
+        if x=="A":
+            count_a+=1
+        if x=="G":
+            count_g+=1
+        if x=="T":
+            count_t+=1
+        if x=="C":
+            count_c+=1
+    print(count_a,count_c,count_g,count_t, sep=" ")
